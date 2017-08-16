@@ -7,7 +7,7 @@ int xbyte(packed_t word, int bytenum)
     int first_left_shift_bits = (3 - bytenum) << 3;
     int then_right_shift_bits = 3 << 3;
 
-    return ((int)word << first_left_shift_bits) >> then_right_shift_bits;
+    return (int)(word << first_left_shift_bits) >> then_right_shift_bits;
 }
 
 int main(void)
