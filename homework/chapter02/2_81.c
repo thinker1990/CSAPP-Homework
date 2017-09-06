@@ -1,26 +1,29 @@
 #include <stdio.h>
 
-unsigned left_k_0(int k)
+unsigned A(int k)
 {
     unsigned all_1 = ~0;
 
     return all_1 << k;
 }
 
-unsigned mid_k_1_left_j_0(int k, int j)
+unsigned B(int k, int j)
 {
-    unsigned left_j_0 = left_k_0(j);
-    unsigned left_k_plus_j_0 = left_k_0(k + j);
+    // a more elegant solution from : https://dreamanddead.gitbooks.io/csapp-3e-solutions/content/chapter2/2.81.html
+    // ~(-1 << k) << j
 
-    return left_j_0 & ~left_k_plus_j_0;
+    unsigned low_j_0 = A(j);
+    unsigned low_k_plus_j_0 = A(k + j);
+
+    return low_j_0 & ~low_k_plus_j_0;
 }
 
 int main(void)
 {
-    unsigned x = left_k_0(16);
+    unsigned x = A(16);
     printf("0X%.8X\n", x);
     
-    unsigned y = mid_k_1_left_j_0(8, 8);
+    unsigned y = B(8, 8);
     printf("0X%.8X\n", y);
     
     return 0;
