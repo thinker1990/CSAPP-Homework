@@ -30,10 +30,10 @@ float_bits float_i2f(int i)
     else {
         int leading_pos = leading_1_pos(val);
         int left_shift_count = (32+1 - leading_pos);
-        frac = val << left_shift_count;
-        exp = bias + left_shift_count + 23;
+        frac = (val << left_shift_count) >> (32-23);
+        exp = bias + leading_pos;
     }
 
-    return (sign << 31) | (exp << 23) | (frac >> (32-23));
+    return (sign << 31) | (exp << 23) | frac;
 }
 
